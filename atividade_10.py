@@ -62,5 +62,15 @@ print(f'Total da soma: {sum(numeros)}')
 
 # ex 7
 numeros = arrayDeAleatorios(9)
+numeros2 = []
 soma_valores = sum(numeros)
+
+try:
+    media = soma_valores / len(numeros2)
+    print(f'A media deu: {media}')
+except ZeroDivisionError:
+    print('Divisao por zero!')
+except Exception as e:
+    print(f'Ocorreu um erro {e}')
+
 
