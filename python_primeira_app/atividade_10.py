@@ -57,7 +57,7 @@ numeros = arrayDeAleatorios(10)
 total = reduce(lambda x, y: print(f'Total = {x+y}, Numero = {y} | Total depois de soma N: {x+y}') or x + y, numeros, 0)
 
 # resolucao map()
-list(map(lambda x: print(f'Somando {str(x).zfill(4)}'), numeros))
+_ = list(map(lambda x: print(f'Somando {str(x).zfill(4)}'), numeros))
 print(f'Total da soma: {sum(numeros)}')
 
 # ex 7
