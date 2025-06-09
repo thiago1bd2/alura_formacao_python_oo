@@ -9,6 +9,8 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
+bin/
+include/
 develop-eggs/
 dist/
 downloads/
@@ -93,6 +95,7 @@ ipython_config.py
 #   having no cross-platform support, pipenv may install dependencies that don't work, or not
 #   install all needed dependencies.
 #Pipfile.lock
+pyvenv.cfg
 
 # UV
 #   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
