@@ -2,30 +2,31 @@ class Restaurante:
     restaurantes :list = []
 
     def __init__(self, nome :str, categoria :str) -> None:
-        self.nome = nome
-        self.categoria = categoria
-        self.ativo = False
+        self._nome = nome.title()
+        self._categoria = categoria.upper()
+        self._ativo = False
         Restaurante.restaurantes.append(self)
 
     def __str__(self) -> str:
-        return f'Nome: {self.nome} | Categoria: {self.categoria} | Ativo: {
-            'sim' if self.ativo else 'não'}'
+        return f'Nome: {self._nome} | Categoria: {self._categoria} | Ativo: {
+            'sim' if self._ativo else 'não'}'
     
+    @classmethod
     def listar_restaurantes():
+        print(f'{'Nome restaurante'.ljust(25)}|{'Categoria'.ljust(25)}|{'Status'.ljust(25)}')
         for r in Restaurante.restaurantes:
-            print(f'{r.nome}|{r.categoria}|{r.ativo}')
+            print(f'{r._nome.ljust(25)}|{r._categoria.ljust(25)}|{r._ativo}')
 
     @property
     def ativo(self):
-        return 'ativo' if self.ativo else 'desativado'
+        return 'ativo' if self._ativo else 'desativado'
             
 
+restaurante_praca = Restaurante('praca','Gourmet')
 
-restaurante_praca = Restaurante('Praca','Gourmet')
+restaurante_pizza = Restaurante('pizza','Italiana')
 
-restaurante_pizza = Restaurante('Pizza','Italiana')
-
-restaurantes = [restaurante_praca, restaurante_pizza]
+# restaurantes = [restaurante_praca, restaurante_pizza]
 
 # print(restaurantes)
 
