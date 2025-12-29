@@ -13,6 +13,11 @@ class Restaurante:
     
     @classmethod
     def listar_restaurantes(cls) -> None:
+        '''
+        Lista todos os restaurantes cadastrados
+        
+        :param cls: Description
+        '''
         print(f'{'Nome restaurante'.ljust(25)}|{'Categoria'.ljust(25)}|{'Status'.ljust(25)}')
         for r in cls.restaurantes:
             print(f'{r._nome.ljust(25)}|{r._categoria.ljust(25)}|{r._ativo}')
@@ -34,3 +39,4 @@ restaurante_pizza = Restaurante('pizza','Italiana')
 # vars - dic dos atributos
 
 Restaurante.listar_restaurantes()
+
