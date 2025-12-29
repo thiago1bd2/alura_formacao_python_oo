@@ -12,9 +12,9 @@ class Restaurante:
             'sim' if self._ativo else 'não'}'
     
     @classmethod
-    def listar_restaurantes():
+    def listar_restaurantes(cls) -> None:
         print(f'{'Nome restaurante'.ljust(25)}|{'Categoria'.ljust(25)}|{'Status'.ljust(25)}')
-        for r in Restaurante.restaurantes:
+        for r in cls.restaurantes:
             print(f'{r._nome.ljust(25)}|{r._categoria.ljust(25)}|{r._ativo}')
 
     @property
