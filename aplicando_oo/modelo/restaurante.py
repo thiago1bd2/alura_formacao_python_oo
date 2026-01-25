@@ -25,6 +25,9 @@ class Restaurante:
     @property
     def ativo(self):
         return 'ativo' if self._ativo else 'desativado'
+
+    def alternar_estado(self):
+        self._ativo = not self._ativo
             
 
 restaurante_praca = Restaurante('praca','Gourmet')
@@ -38,5 +41,5 @@ restaurante_pizza = Restaurante('pizza','Italiana')
 # dir - lista todos metodos e attr da classe
 # vars - dic dos atributos
 
+restaurante_praca.alternar_estado()
 Restaurante.listar_restaurantes()
-
