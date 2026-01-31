@@ -1,3 +1,12 @@
 {
-    "python.languageServer": "Pylance"
+    "python.languageServer": "Pylance",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-python.python",
+    "python.formatting.provider": "black",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.formatOnType": true,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
+    }
 }

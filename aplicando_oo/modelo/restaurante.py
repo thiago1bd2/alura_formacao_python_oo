@@ -1,3 +1,5 @@
+from modelo.avaliacao import Avalicao
+
 class Restaurante:
     restaurantes :list = []
 
@@ -5,6 +7,7 @@ class Restaurante:
         self._nome = nome.title()
         self._categoria = categoria.upper()
         self._ativo = False
+        self._avaliacoes = []
         Restaurante.restaurantes.append(self)
 
     def __str__(self) -> str:
@@ -18,9 +21,9 @@ class Restaurante:
         
         :param cls: Description
         '''
-        print(f'{'Nome restaurante'.ljust(25)}|{'Categoria'.ljust(25)}|{'Status'.ljust(25)}')
+        print(f'{'Nome restaurante'.ljust(25)}|{'Categoria'.ljust(25)}|{'Avaliacao'.ljust(25)}|{'Status'.ljust(25)}')
         for r in cls.restaurantes:
-            print(f'{r._nome.ljust(25)}|{r._categoria.ljust(25)}|{r._ativo}')
+            print(f'{r._nome.ljust(25)}|{r._categoria.ljust(25)}|{str(r.media_avaliacoes()).ljust(25)}|{r._ativo}')
 
     @property
     def ativo(self):
@@ -28,18 +31,16 @@ class Restaurante:
 
     def alternar_estado(self):
         self._ativo = not self._ativo
-            
+        
+    def adicionar_avaliacao(self, cliente, nota) -> None:
+        avaliacao = Avalicao(cliente, nota)
+        self._avaliacoes.append(avaliacao)
 
-restaurante_praca = Restaurante('praca','Gourmet')
+    def media_avaliacoes(self):
+        if not self._avaliacoes:
+            return 0
+        
+        sum_notas = sum(avaliacao._nota for avaliacao in self._avaliacoes)
+        total_avaliacoes = len(self._avaliacoes)
 
-restaurante_pizza = Restaurante('pizza','Italiana')
-
-# restaurantes = [restaurante_praca, restaurante_pizza]
-
-# print(restaurantes)
-
-# dir - lista todos metodos e attr da classe
-# vars - dic dos atributos
-
-restaurante_praca.alternar_estado()
-Restaurante.listar_restaurantes()
+        return round((sum_notas / total_avaliacoes), 1)
