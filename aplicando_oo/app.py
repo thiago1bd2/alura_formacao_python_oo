@@ -1,18 +1,22 @@
 from modelo.restaurante import Restaurante
+from modelo.cardapio.bebida import Bebida
+from modelo.cardapio.prato import Prato
 
+# Restaurante
 restaurante_praca = Restaurante('praca','Gourmet')
-restaurante_pizza = Restaurante('pizza','Italiana')
-restaurante_local = Restaurante('Local', 'Caseira')
 
+# Avaliacao restaurante
 restaurante_praca.adicionar_avaliacao('Amelia',10)
-restaurante_praca.adicionar_avaliacao('Laura',8)
-restaurante_praca.adicionar_avaliacao('Thiago',5)
-restaurante_praca.adicionar_avaliacao('Thiago',-15)
-restaurante_praca.adicionar_avaliacao('Thiago',0)
-restaurante_praca.adicionar_avaliacao('Thiago',12)
+
+# Bebida
+bebida_cafe_grande = Bebida('Expresso', 5.0, 'grande')
+
+# Prato
+prato_pao_na_chapa_medio = Prato('Pao na chapa', 2.5, 'prensado na chapa com manteiga')
 
 def main():
-    pass
+    print(bebida_cafe_grande)
+    print(prato_pao_na_chapa_medio)
 
 
 # restaurantes = [restaurante_praca, restaurante_pizza]
@@ -22,8 +26,8 @@ def main():
 # dir - lista todos metodos e attr da classe
 # vars - dic dos atributos
 
-restaurante_praca.alternar_estado()
-Restaurante.listar_restaurantes()
+# restaurante_praca.alternar_estado()
+# Restaurante.listar_restaurantes()
 
 if __name__ == '__main__':
     main()
