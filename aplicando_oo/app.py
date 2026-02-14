@@ -1,6 +1,7 @@
 from modelo.restaurante import Restaurante
 from modelo.cardapio.bebida import Bebida
 from modelo.cardapio.prato import Prato
+from modelo.cardapio.sobremesa import Sobremesa
 
 
 def main():
@@ -15,11 +16,17 @@ def main():
 
     # Prato
     prato_pao_na_chapa_medio = Prato('Pao na chapa', 2.5, 'prensado na chapa com manteiga')
+    prato_pao_na_chapa_medio.aplicar_desconto()
+
+    # Sobremesa
+    sobremesa_sorvete_casquinha = Sobremesa("Casquinha Baunilha", 10, 'Gelado', 'Médio', 'Soverne caseiro sabor baunilha.')
 
     restaurante_praca.add_bebida_cardapio(bebida_cafe_grande)
     restaurante_praca.add_prato_cardapio(prato_pao_na_chapa_medio)
+    restaurante_praca.add_item_cardapio(sobremesa_sorvete_casquinha)
+    # restaurante_praca.add_item_cardapio("deve falhar")
 
-    print(restaurante_praca)
+    restaurante_praca.ver_cardapio
 
 
 # restaurantes = [restaurante_praca, restaurante_pizza]

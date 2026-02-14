@@ -1,4 +1,8 @@
 from modelo.avaliacao import Avalicao
+from modelo.cardapio.item_cardapio import ItemCardapio
+from modelo.cardapio.bebida import Bebida
+from modelo.cardapio.prato import Prato
+from modelo.cardapio.sobremesa import Sobremesa
 
 class Restaurante:
     restaurantes :list = []
@@ -21,7 +25,7 @@ class Restaurante:
         Restaurante.restaurantes.append(self)
 
     def __str__(self) -> str:
-        return f'Nome: {self._nome} | Categoria: {self._categoria} | Ativo: {'sim' if self._ativo else 'não'} | Cardapio{self.ver_cardapio()}'
+        return f'Nome: {self._nome} | Categoria: {self._categoria} | Ativo: {'sim' if self._ativo else 'não'}'
     
     @classmethod
     def listar_restaurantes(cls) -> None:
@@ -66,10 +70,72 @@ class Restaurante:
         return round((sum_notas / total_avaliacoes), 1)
     
     def add_bebida_cardapio(self, bebida):
-        self._cardapio.append(bebida)
+        """
+        [Deprecated] Docstring for add_bebida_cardapio
+        
+        :param self: Description
+        :param bebida: Description
+
+        Use add_item_cardapio
+        """
+        self.add_item_cardapio(bebida)
 
     def add_prato_cardapio(self, prato):
-        self._cardapio.append(prato)
+        """
+        [Deprecated] Docstring for add_prato_cardapio
+        
+        :param self: Description
+        :param prato: Description
 
+        Use add_item_cardapio
+        """
+        self.add_item_cardapio(prato)
+
+    def add_item_cardapio(self, item_cardapio: ItemCardapio):
+        if not isinstance(item_cardapio, ItemCardapio):
+            raise TypeError(f'Esperado ItemCardapio, mas recebeu {type(item_cardapio)}')
+
+        self._cardapio.append(item_cardapio)
+        print(f'Adicionado {item_cardapio} ao cardapio')
+
+
+    @property
+    def ver_cardapio_v2(self):
+        cardapio_lista = []
+        print(f'Cardapio do restaurante {self._nome}\n')
+        for i, item in enumerate(self._cardapio, start=1):
+            if hasattr(item, '_tamanho'):
+                mensagem = f'{i}. Nome: {item._nome} | Preço: R${item._preco}| Tamanho: {item._tamanho}'
+                cardapio_lista.append(mensagem)
+
+            if hasattr(item, '_descricao'):
+                mensagem = f'{i}. Nome:{item._nome} | Preço: R${item._preco}| Descricao: {item._descricao}'
+                cardapio_lista.append(mensagem)
+
+        return cardapio_lista
+
+            
+    @property
+    def ver_cardapio_v3(self):
+        print(f'Cardapio do restaurante {self._nome}\n')
+        for i, item in enumerate(self._cardapio, start=1):
+            if hasattr(item, '_tamanho'):
+                mensagem = f'{i} - Nome: {item._nome} | Preço R$: {item._preco} | Tamanho: {item._tamanho}'
+                print(mensagem)
+
+            if hasattr(item, '_descricao'):
+                mensagem = f'{i} - Nome: {item._nome} | Preço R$: {item._preco} | Descricao: {item._descricao}'
+                print(mensagem)
+
+    @property
     def ver_cardapio(self):
-        return [ item.__str__() for item in self._cardapio]
+        for i, item in enumerate(self._cardapio, start=1):
+            if isinstance(item, Bebida):
+                mensagem = f'{i} - Nome: {item._nome} | Preço R$: {item._preco} | Tamanho: {item._tamanho}'
+                print(mensagem)
+            elif isinstance(item, Prato):
+                mensagem = f'{i} - Nome: {item._nome} | Preço R$: {item._preco} | Descricao: {item._descricao}'
+                print(mensagem)
+            elif isinstance(item, Sobremesa):
+                mensagem = f'{i} - Nome: {item._nome} | Preço R$: {item._preco} | Tipo: {item._tipo} | Tamanho: {item._tamanho} | Descricao: {item._descricao}'
+                print(mensagem)
