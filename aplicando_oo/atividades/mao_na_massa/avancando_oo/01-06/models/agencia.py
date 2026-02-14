@@ -1,4 +1,4 @@
-from banco import Banco
+from .banco import Banco
 
 class Agencia(Banco):
 

@@ -17,11 +17,11 @@ class Restaurante:
         self._categoria = categoria.upper()
         self._ativo = False
         self._avaliacoes = []
+        self._cardapio = []
         Restaurante.restaurantes.append(self)
 
     def __str__(self) -> str:
-        return f'Nome: {self._nome} | Categoria: {self._categoria} | Ativo: {
-            'sim' if self._ativo else 'não'}'
+        return f'Nome: {self._nome} | Categoria: {self._categoria} | Ativo: {'sim' if self._ativo else 'não'} | Cardapio{self.ver_cardapio()}'
     
     @classmethod
     def listar_restaurantes(cls) -> None:
@@ -64,3 +64,12 @@ class Restaurante:
         total_avaliacoes = len(self._avaliacoes)
 
         return round((sum_notas / total_avaliacoes), 1)
+    
+    def add_bebida_cardapio(self, bebida):
+        self._cardapio.append(bebida)
+
+    def add_prato_cardapio(self, prato):
+        self._cardapio.append(prato)
+
+    def ver_cardapio(self):
+        return [ item.__str__() for item in self._cardapio]
